@@ -1,0 +1,26 @@
+[Unit]
+Description=RV1126B LLM screen UI with system IME
+After=multi-user.target dbus.service
+Wants=dbus.service
+Conflicts=face-ai-drm.service lightdm.service
+
+[Service]
+Type=simple
+User=root
+Environment=HOME=/root
+Environment=XDG_RUNTIME_DIR=/tmp/runtime-root
+WorkingDirectory=/userdata/llm/ui
+ExecStartPre=-/bin/systemctl stop face-ai-drm.service
+ExecStartPre=-/bin/systemctl stop lightdm.service
+ExecStartPre=-/usr/bin/pkill -f /userdata/llm/ui/llm_touch_chat.py
+ExecStartPre=-/usr/bin/pkill -f /userdata/llm/ui/llm_gtk_chat.py
+ExecStartPre=-/usr/bin/pkill -f matchbox-keyboard
+ExecStartPre=-/usr/bin/pkill -x ibus-daemon
+ExecStartPre=-/usr/bin/pkill -x openbox
+ExecStartPre=-/usr/bin/pkill -x Xorg
+ExecStart=/userdata/llm/ui/start_system_ime_local.sh
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target

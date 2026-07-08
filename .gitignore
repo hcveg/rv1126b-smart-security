@@ -1,0 +1,44 @@
+# Python / build cache
+__pycache__/
+*.py[cod]
+*.o
+*.a
+*.so
+*.log
+*.pid
+
+# Runtime outputs
+*.jpg
+*.jpeg
+*.png
+*.wav
+*.raw
+*.jsonl
+
+# Model weights and binary packages are intentionally not committed.
+*.rknn
+*.gguf
+*.onnx
+*.bin
+*.tar
+*.tar.gz
+*.zip
+*.deb
+
+# Compiled board binaries
+retinaface_x11_recognize
+llama-simple
+bin/
+bin-*/
+debs_*/
+models/
+
+# Local face database and private data
+faces/
+face_db/
+*.npy
+
+# Local editor / OS files
+.DS_Store
+.vscode/
+.idea/
